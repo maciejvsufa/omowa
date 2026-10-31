@@ -1,0 +1,304 @@
+{
+ "sessions": [
+  {
+   "mode": "v1",
+   "forWho": "Zespół",
+   "forName": "Firma Demo S.A.",
+   "comm": "Hybryda",
+   "moderator": "AI",
+   "fool": true,
+   "foolInt": 2,
+   "domains": {
+    "Wdrożenia B2B": {
+     "on": true,
+     "why": "Wdrożenie aplikacji zamówień u klientów hurtowych"
+    }
+   },
+   "participants": [
+    "DyrSprzedaży",
+    "SzefIT",
+    "SzefowaOperacji",
+    "DyrFinansów",
+    "KierObsługi",
+    "SpecHR"
+   ],
+   "savedAt": "2026-10-25T18:00:00.000Z",
+   "id": "przyklad-zamowienia24-pelny",
+   "topic": "Przykład · Dlaczego pilotaż aplikacji Zamówienia24 nie przekłada się na zamówienia — i jaką strategię wdrożenia przyjąć? (pełna sesja)",
+   "phase": "Dyskusja",
+   "forms": {
+    "DyrSprzedaży": {
+     "tezy": [
+      {
+       "teza": "Klienci wracają do telefonu, bo handlowiec przyjmie zamówienie szybciej, niż oni wyklikają je w aplikacji.",
+       "zalozenie": "38 z 52 klientów pilotażu złożyło pierwsze zamówienie w aplikacji, a drugie już telefonicznie (CRM, październik)."
+      }
+     ]
+    },
+    "SzefIT": {
+     "tezy": [
+      {
+       "teza": "Cennik indywidualny ładuje się z opóźnieniem do 24 godzin, więc klient widzi złe ceny.",
+       "zalozenie": "Logi synchronizacji z ERP: 17 rozbieżności cen w trzy tygodnie."
+      }
+     ]
+    },
+    "SzefowaOperacji": {
+     "tezy": [
+      {
+       "teza": "Magazyn nie odróżnia zamówień z aplikacji od telefonicznych, więc nie wiemy, czy aplikacja skraca kompletację.",
+       "zalozenie": "System magazynowy ma jedno źródło zamówień; raport kompletacji nie ma podziału na kanał."
+      }
+     ]
+    },
+    "DyrFinansów": {
+     "tezy": [
+      {
+       "teza": "Premie handlowców liczymy od zamówień, które sami wpiszą — zamówienie z aplikacji im się nie liczy.",
+       "zalozenie": "Regulamin premiowy 2026, §4; rozmowy z dwoma handlowcami."
+      }
+     ]
+    },
+    "KierObsługi": {
+     "tezy": [
+      {
+       "teza": "Połowa zgłoszeń do obsługi to pytania „jak zamówić w aplikacji”, a nie błędy.",
+       "zalozenie": "Kategorie zgłoszeń wrzesień–październik: 112 z 230."
+      }
+     ]
+    },
+    "SpecHR": {
+     "tezy": [
+      {
+       "teza": "Klienci dostali tylko instrukcję PDF mailem — nikt nie pokazał im aplikacji na żywo.",
+       "zalozenie": "Plan komunikacji pilotażu; 64% klientów nie otworzyło PDF (statystyki maili)."
+      }
+     ]
+    }
+   },
+   "artifact": {
+    "variables": [
+     "Błędy cen w aplikacji",
+     "Problemy klienta z zamówieniem w aplikacji",
+     "Zamówienia telefoniczne przez handlowca",
+     "Premia za zamówienia wpisane przez handlowca",
+     "Samodzielność klientów w aplikacji",
+     "Zamówienia w aplikacji"
+    ],
+    "disagreement": "Czy zmienić system premii przed szerokim wdrożeniem (Finanse: inaczej handlowcy zablokują zmianę), czy po (Sprzedaż: zmiana w Q1 grozi odejściami)?",
+    "archetype": {
+     "name": "Przenoszenie ciężaru",
+     "confidence": "75%",
+     "alt": "Poprawki, które zawodzą"
+    },
+    "mermaid": "flowchart LR\n  B[\"Błędy cen w aplikacji\"] -->|+| P[\"Problemy klienta z zamówieniem\"]\n  P -->|+| S[\"Zamówienia telefoniczne przez handlowca\"]\n  S -->|−| P\n  M[\"Premia za zamówienia wpisane przez handlowca\"] -->|+| S\n  P -->|+| F[\"Samodzielność klientów w aplikacji\"]\n  F -->|−| P\n  S -->|−| F\n  F -->|+| Z[\"Zamówienia w aplikacji\"]",
+    "levers": [
+     "Naprawa synchronizacji cen — warunek zaufania do aplikacji",
+     "Premia za klienta aktywnego w aplikacji, nie tylko za wpisane zamówienie",
+     "Pierwsze zamówienia klient składa w aplikacji razem z handlowcem",
+     "Znacznik kanału w systemie magazynowym, żeby mierzyć efekt"
+    ],
+    "questions": [
+     "Kiedy i jak zmieniamy premie, żeby nie stracić handlowców?",
+     "Co jest warunkiem wejścia do szerokiego wdrożenia?",
+     "Kto uczy klientów: handlowcy czy obsługa klienta?"
+    ],
+    "warnings": "Dane z pilotażu pochodzą od 52 klientów z jednego regionu — mogą nie odpowiadać 120 klientom z całego kraju."
+   },
+   "decisions": [
+    {
+     "title": "Premia od wszystkich zamówień klienta + bonus za klienta aktywnego w aplikacji",
+     "owner": "DyrFinansów + DyrSprzedaży",
+     "term": "2026-12-01",
+     "miara": "≥ 50% klientów z min. 2 zamówieniami w aplikacji w lutym",
+     "done": false,
+     "pm": [
+      {
+       "cause": "Handlowcy uznają bonus za za niski i nic się nie zmieni.",
+       "mit": "Przed ogłoszeniem konsultacja z pięcioma handlowcami."
+      }
+     ]
+    },
+    {
+     "title": "Bramka szerokiego wdrożenia: 4 tygodnie bez rozbieżności cen + kanał w magazynie",
+     "owner": "SzefIT + SzefowaOperacji",
+     "term": "2026-12-22",
+     "miara": "Raport synchronizacji: 0 rozbieżności",
+     "done": false,
+     "pm": [
+      {
+       "cause": "Warunek nigdy nie zostanie spełniony i wdrożenie stanie.",
+       "mit": "Po 6 tygodniach przegląd progu na spotkaniu."
+      }
+     ]
+    },
+    {
+     "title": "Pierwsze 3 zamówienia klient składa w aplikacji z handlowcem; cotygodniowe pokazy obsługi",
+     "owner": "DyrSprzedaży + KierObsługi + SpecHR",
+     "term": "2027-01-10",
+     "miara": "Pytania „jak zamówić” < 20% zgłoszeń",
+     "done": false,
+     "pm": [
+      {
+       "cause": "Handlowcy nie mają czasu na wspólne zamówienia.",
+       "mit": "15-minutowy slot w grafiku tygodnia."
+      }
+     ]
+    },
+    {
+     "title": "Wdrożenie falami po 40 klientów, od tych, którzy już zamawiają mailem",
+     "owner": "SpecHR + DyrSprzedaży",
+     "term": "2027-01-15",
+     "miara": "Aktywacja ≥ 70% w każdej fali",
+     "done": false,
+     "pm": [
+      {
+       "cause": "Pierwsza fala trafi na klientów najtrudniejszych.",
+       "mit": "Zaczynamy od klientów, którzy już zamawiają mailem."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "mode": "v1",
+   "forWho": "Zespół",
+   "forName": "Firma Demo S.A.",
+   "comm": "Hybryda",
+   "moderator": "AI",
+   "fool": true,
+   "foolInt": 2,
+   "domains": {
+    "Wdrożenia B2B": {
+     "on": true,
+     "why": "Wdrożenie aplikacji zamówień u klientów hurtowych"
+    }
+   },
+   "participants": [
+    "DyrSprzedaży",
+    "SzefIT",
+    "SzefowaOperacji",
+    "DyrFinansów",
+    "KierObsługi",
+    "SpecHR"
+   ],
+   "savedAt": "2026-10-25T18:00:00.000Z",
+   "id": "przyklad-zamowienia24-start",
+   "topic": "Przykład · Dlaczego pilotaż aplikacji Zamówienia24 nie przekłada się na zamówienia — i jaką strategię wdrożenia przyjąć? (od Dialogu)",
+   "phase": "Dialog",
+   "forms": {
+    "DyrSprzedaży": {
+     "tezy": [
+      {
+       "teza": "Klienci wracają do telefonu, bo handlowiec przyjmie zamówienie szybciej, niż oni wyklikają je w aplikacji.",
+       "zalozenie": "38 z 52 klientów pilotażu złożyło pierwsze zamówienie w aplikacji, a drugie już telefonicznie (CRM, październik)."
+      }
+     ]
+    },
+    "SzefIT": {
+     "tezy": [
+      {
+       "teza": "Cennik indywidualny ładuje się z opóźnieniem do 24 godzin, więc klient widzi złe ceny.",
+       "zalozenie": "Logi synchronizacji z ERP: 17 rozbieżności cen w trzy tygodnie."
+      }
+     ]
+    },
+    "SzefowaOperacji": {
+     "tezy": [
+      {
+       "teza": "Magazyn nie odróżnia zamówień z aplikacji od telefonicznych, więc nie wiemy, czy aplikacja skraca kompletację.",
+       "zalozenie": "System magazynowy ma jedno źródło zamówień; raport kompletacji nie ma podziału na kanał."
+      }
+     ]
+    },
+    "DyrFinansów": {
+     "tezy": [
+      {
+       "teza": "Premie handlowców liczymy od zamówień, które sami wpiszą — zamówienie z aplikacji im się nie liczy.",
+       "zalozenie": "Regulamin premiowy 2026, §4; rozmowy z dwoma handlowcami."
+      }
+     ]
+    },
+    "KierObsługi": {
+     "tezy": [
+      {
+       "teza": "Połowa zgłoszeń do obsługi to pytania „jak zamówić w aplikacji”, a nie błędy.",
+       "zalozenie": "Kategorie zgłoszeń wrzesień–październik: 112 z 230."
+      }
+     ]
+    },
+    "SpecHR": {
+     "tezy": [
+      {
+       "teza": "Klienci dostali tylko instrukcję PDF mailem — nikt nie pokazał im aplikacji na żywo.",
+       "zalozenie": "Plan komunikacji pilotażu; 64% klientów nie otworzyło PDF (statystyki maili)."
+      }
+     ]
+    }
+   }
+  },
+  {
+   "mode": "v1",
+   "forWho": "Zespół",
+   "forName": "Firma Demo S.A. — magazyn centralny",
+   "comm": "Warsztat osobisty",
+   "moderator": "człowiek",
+   "fool": true,
+   "foolInt": 1,
+   "domains": {},
+   "participants": [
+    "KierDzienny",
+    "KierNocna",
+    "Brygadzista",
+    "KoordJakości",
+    "NowyKierownik"
+   ],
+   "savedAt": "2026-10-25T18:00:00.000Z",
+   "id": "przyklad-szkolenie-nocna-zmiana",
+   "topic": "Przykład · Szkolenie: dlaczego nocna zmiana ma dwa razy więcej błędów kompletacji niż dzienna?",
+   "phase": "Dialog",
+   "forms": {
+    "KierDzienny": {
+     "tezy": [
+      {
+       "teza": "Na nocnej zmianie jest dwóch nowych pracowników na pięciu, w dzień jeden na dwunastu.",
+       "zalozenie": "Grafik, październik."
+      }
+     ]
+    },
+    "KierNocna": {
+     "tezy": [
+      {
+       "teza": "W strefie C po 22:00 działa co druga lampa i etykiety są słabo czytelne.",
+       "zalozenie": "Zgłoszenie BHP z 12.10."
+      }
+     ]
+    },
+    "Brygadzista": {
+     "tezy": [
+      {
+       "teza": "Nocą nie ma kontroli drugiej osoby przy wysyłkach ekspresowych.",
+       "zalozenie": "Procedura kontroli działa do 20:00."
+      }
+     ]
+    },
+    "KoordJakości": {
+     "tezy": [
+      {
+       "teza": "60% błędów nocnych to pomylone warianty tego samego produktu.",
+       "zalozenie": "Analiza reklamacji, wrzesień."
+      }
+     ]
+    },
+    "NowyKierownik": {
+     "tezy": [
+      {
+       "teza": "Po dwóch dniach szkolenia wstępnego poszedłem od razu na noc, bez osoby, którą mógłbym zapytać.",
+       "zalozenie": "Własne doświadczenie."
+      }
+     ]
+    }
+   }
+  }
+ ]
+}
